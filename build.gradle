@@ -33,6 +33,15 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 
+	//swagger
+	implementation('io.springfox:springfox-swagger2:2.9.2')
+	implementation('io.springfox:springfox-swagger-ui:2.9.2')
+
+	//cache
+	implementation('org.springframework.boot:spring-boot-starter-data-redis')
+	implementation('org.springframework.boot:spring-boot-starter-cache')
+	implementation('org.springframework.data:spring-data-redis')
+
 	runtimeOnly 'org.projectlombok:lombok:1.16.2'
 	compileOnly 'org.projectlombok:lombok:1.16.2'
 	testCompileOnly 'org.projectlombok:lombok:1.16.2'
@@ -57,4 +66,8 @@ test {
 asciidoctor {
 	inputs.dir snippetsDir
 	dependsOn test
+}
+
+bootRun {
+	jvmArgs = ["-Djava.security.egd=file:/dev/./urandom", "-Dspring.profiles.active=local"]
 }

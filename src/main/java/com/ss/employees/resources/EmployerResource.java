@@ -6,6 +6,7 @@ import com.ss.employees.repositories.EmployeeRepository;
 import com.ss.employees.repositories.EmployerRepository;
 import com.ss.employees.representations.EmployeeRepresentation;
 import com.ss.employees.representations.EmployerRepresentation;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.ResourceAccessException;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Optional;
 
@@ -32,8 +34,9 @@ public class EmployerResource {
     }
 
     @GetMapping
+    @ApiOperation(produces = "application/json", value = "Retrieves employer list created by the user")
     public Page<EmployerRepresentation> list(
-            OAuth2Authentication auth2Authentication,
+            @ApiIgnore OAuth2Authentication auth2Authentication,
             @RequestParam int page,
             @RequestParam int size) {
         return employerRepository
