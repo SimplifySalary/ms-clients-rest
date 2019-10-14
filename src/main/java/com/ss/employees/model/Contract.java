@@ -26,4 +26,7 @@ public class Contract {
     @ManyToOne(fetch = FetchType.LAZY)
     private Employee employee;
 
+    @OneToOne
+    private Salary salary;
+
 }
